@@ -7,15 +7,16 @@
         private $precio;
         private $promocion;
         private $avatar;
+        private $id_provincia;
 
 
-        public function __construct($id, $nombre, $precio, $promocion, $avatar)
+        public function __construct($nombre, $precio, $promocion, $avatar, $id_provincia)
         {
-            $this->id = $id;
             $this->nombre = $nombre;
             $this->precio = $precio;
             $this->promocion = $promocion;
             $this->avatar = $avatar;
+            $this->id_provincia = $id_provincia;
         }
 
         public function buscarDestinos($busqueda, $prov = 0)
@@ -42,15 +43,12 @@
             $destinosObject = [];
             foreach ($destinos as $destino) {
 
-                $finalDestino = new Destino($destino["id_destino"],$destino["nombre_destino"], $destino["precio"], $destino["promocion"], $destino["avatar_destino"]);
+                $finalDestino = new Destino($destino["id_destino"],$destino["nombre_destino"], $destino["precio"], $destino["promocion"], $destino["avatar_destino"], $destino["id_provincia"]);
                 
                 $destinosObject[] = $finalDestino;
             }
             return $destinosObject;
         }
-
-
-
 
         public function listarDestinos(){
             $link = Conexion::conectar();
@@ -68,15 +66,12 @@
             $destinosObject = [];
             foreach ($destinos as $destino) {
 
-                $finalDestino = new Destino($destino["id_destino"],$destino["nombre_destino"], $destino["precio"], $destino["promocion"], $destino["avatar_destino"]);
+                $finalDestino = new Destino($destino["id_destino"],$destino["nombre_destino"], $destino["precio"], $destino["promocion"], $destino["avatar_destino"], $destino["id_provincia"]);
                 
                 $destinosObject[] = $finalDestino;
             }
             return $destinosObject;
         }
-
-
-
         
 
         /**
@@ -175,6 +170,26 @@
         public function setPrecio($precio)
         {
                 $this->precio = $precio;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of id_provincia
+         */ 
+        public function getId_provincia()
+        {
+                return $this->id_provincia;
+        }
+
+        /**
+         * Set the value of id_provincia
+         *
+         * @return  self
+         */ 
+        public function setId_provincia($id_provincia)
+        {
+                $this->id_provincia = $id_provincia;
 
                 return $this;
         }
