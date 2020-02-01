@@ -11,11 +11,9 @@
 
 			$stmt = $link->prepare("
 					INSERT INTO destinos (
-                    nombre_destino, precio, promocion, avatar_destino, id_provincia
-                    )
+                    nombre_destino, precio, promocion, avatar_destino)
 					VALUES (
-                        :nombre_destino, :precio, :promocion, :avatar_destino, :id_provincia
-                        )
+                        :nombre_destino, :precio, :promocion, :avatar_destino)
 				");
 
 				$stmt->bindValue(':nombre_destino', $destino->getNombre());
@@ -26,13 +24,44 @@
 				
 				$stmt->bindValue(':avatar_destino', $destino->getAvatar());
 				
-				$stmt->bindValue(':id_provincia', $destino->getId_provincia());
-
 				$stmt->execute();
 
 				return true;
 
 				// Agregar try ****
 
-			}
 		}
+
+		public static function getTodosDestinos()
+		{
+			// global $connection; VERIFICAR 
+			$link = Conexion::conectar();
+
+
+			$stmt = $link->prepare("
+				SELECT id_destino, nombre_destino, precio, promocion, avatar_destino, id_provincia
+				FROM destinos
+				ORDER BY nombre_destino;
+			");
+
+			$stmt->execute();
+
+			$destinos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$destinosObject = [];
+
+			foreach ($destinos as $destino) {
+				$finalDestino = new Destino(
+					$destino['id_destino'],
+					$destino['nombre_destino'], 
+					$destino['precio'],
+					$destino['promocion'],
+					$destino['avatar_destino']
+				);
+
+				$destinosObject[] = $finalDestino;
+			}
+
+			return $destinosObject;
+		}
+	}
