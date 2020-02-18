@@ -23,6 +23,7 @@ Route::get('/borrarUsuario/{id}', 'UsuariosController@destroy');
 
 Route::get('/adminDestinos', 'DestinosController@index');
 Route::get('/destinoAlta', 'DestinosController@create');
-Route::get('/destinoMod/{id}', 'DestinosController@edit');
 Route::post('/destinoAlta', "DestinosController@store");
-
+Route::post('/destinoMod', "DestinosController@update");
+Route::get('/destinoMod/{id}', 'DestinosController@edit');
+Route::get('/borrarDestino/{id}', 'DestinosController@destroy');

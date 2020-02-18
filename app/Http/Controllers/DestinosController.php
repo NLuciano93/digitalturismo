@@ -56,36 +56,42 @@ class DestinosController extends Controller
         $reglas = [
             "nombre" => "required|string|min:3",
             "precio" => "required|integer",
-            "promocion" => "required|integer",
+            "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
-            "imagenPerfil" => "required|file"
+            "imagenPerfil" => "required|image|mimes:jpeg,jpg,png,svg,bmp,webp"
 
         ];
         $mensajes =[
             "string" => "El campo :attribute debe ser un texto",
             "min" => "El campo :attribute tiene un mínimo de :min",
+            "max" => "El campo :attribute tiene un máximos de :max",
             "integer" => "El campo :attribute debe ser un número",
             "required" => "El campo :attribute es obligatorio",
-            "file"=> "El campo no es un archivo" 
+            "image"=> "El campo no es un imagen",
+            "mimes" => "El archivo tiene que ser jpeg, jpg, png, svg, bmp o webp" 
         ];
         
         $this->validate($request, $reglas, $mensajes);
         
-        $ruta = $request->file("imagenPerfil")->store("public");
-        $nombreArchivo = basename($ruta);
+        //Almacenamiento en STORAGE
+       // $ruta = $request->file("imagenPerfil")->store("public");
+       // $nombreArchivo = basename($ruta);
+       $imageName = time(). $request->imagenPerfil->getClientOriginalName();
+       $request->imagenPerfil->move(public_path('images/destinos'), $imageName);
+        
 
         
         $destinoNuevo = new Destino();
        
-        $destinoNuevo->nombre_destino = $request["nombre"];
+        $destinoNuevo->nombre_destino = strtoupper($request["nombre"]);
         $destinoNuevo->precio = $request["precio"];
         $destinoNuevo->promocion = $request["promocion"];
-        $destinoNuevo->avatar_destino = $nombreArchivo;
+        $destinoNuevo->avatar_destino = $imageName;
         $destinoNuevo->id_provincia = (int)$request["provincia"];
        
 
         $destinoNuevo->save();
-        return redirect("/adminDestinos");
+        return redirect("/adminDestinos")->with('mensaje', 'Destino '. $destinoNuevo->nombre_destino. ' agregado con éxito');
     }
 
     /**
@@ -123,9 +129,40 @@ class DestinosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $reglas = [
+            "nombre" => "required|string|min:3",
+            "precio" => "required|integer",
+            "promocion" => "required|integer|min:0|max:100",
+            "provincia" => "required",
+            
+
+        ];
+        $mensajes =[
+            "string" => "El campo :attribute debe ser un texto",
+            "min" => "El campo :attribute tiene un mínimo de :min",
+            "max" => "El campo :attribute tiene un máximos de :max",
+            "integer" => "El campo :attribute debe ser un número",
+            "required" => "El campo :attribute es obligatorio",
+             
+        ];
+        
+        $this->validate($request, $reglas, $mensajes);
+
+        $Destino = Destino::find($request->input('id'));
+        $Destino->nombre_destino = $request["nombre"];
+        $Destino->precio = $request["precio"];
+        $Destino->promocion = $request["promocion"];
+        if ($request->file('imagenPerfil')) {
+            $imageName = time(). $request->imagenPerfil->getClientOriginalName();
+            $request->imagenPerfil->move(public_path('images/destinos'), $imageName);
+           $Destino->avatar_destino = $imageName; 
+        }
+        
+        $Destino->id_provincia = (int)$request["provincia"];
+        $Destino->save();
+        return redirect('/adminDestinos')->with('mensaje', 'Destino '. $Destino->nombre_destino. ' fue modificado correctamente');
     }
 
     /**
@@ -136,6 +173,10 @@ class DestinosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Destino = Destino::find($id);
+
+        $Destino->delete();
+        return redirect("/adminDestinos")->with('mensaje', 'Destino '. $Destino->nombre_destino. ' borrado exitosamente');
     }
+    
 }

@@ -7,6 +7,12 @@
 
 <div class="container-fluid mt-5">
     <div class="row">
+        @if (session('mensaje'))
+            <div class="col-12 my-3 alert alert-success">
+                {{session('mensaje')}}
+            </div>
+        @endif
+        
         <div class="col-12 my-3">
             <a href="/destinoAlta" class="btn btn-primary btn-lg" tabindex="-1" role="button">AGREGAR DESTINO</a>
         </div>
@@ -31,7 +37,7 @@
                 <td>${{$destino->precio}}</td>
                 <td>{{$destino->promocion}}%</td>
                 <td>{{$destino->provincia->nombre_provincia}}</td>
-                
+                <td class="w-25 h-25"><img class ="img-fluid img-thumbnail "src="{{asset('images/destinos/'. $destino->avatar_destino)}}" alt=""></td>
                 <td><a href="destinoMod/{{$destino->id_destino}}" class="btn btn-success" tabindex="-1" role="button">Editar</a></td>
                 <td><a href="/borrarDestino/{{$destino->id_destino}}" class="btn btn-danger" tabindex="-1" role="button">Eliminar</a></td>
             </tr>
@@ -40,5 +46,9 @@
     </table>
     </div>
 </div>
-
+    <div class="container">
+        <div class="row">
+            {{$destinos->links()}}
+        </div>
+    </div>
 @endsection
