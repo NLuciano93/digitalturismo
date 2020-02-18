@@ -26,3 +26,5 @@ Route::get('/destinoAlta', 'DestinosController@create');
 Route::get('/destinoMod/{id}', 'DestinosController@edit');
 Route::post('/destinoAlta', "DestinosController@store");
 
+Route::get('/destinos', 'DestinosController@pagDestinos');
+

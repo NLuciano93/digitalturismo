@@ -138,4 +138,13 @@ class DestinosController extends Controller
     {
         //
     }
+
+    /** Funcion para pagina DESTINOS  */
+    public function pagDestinos()
+    {
+        $destinos= Destino::paginate(8);
+
+        $vac = compact('destinos');
+        return view('/destinos', $vac);
+    }
 }
