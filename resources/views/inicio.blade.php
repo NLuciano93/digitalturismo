@@ -30,6 +30,7 @@ if (isset($_SESSION)) {
       
 }
      */
+  
 
         
 ?>
@@ -87,7 +88,7 @@ if (isset($_SESSION)) {
               <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0"> 
                 <div class="card carta-promocion">
                   <button class="favorito"><i class="fas fa-heart"></i></button>
-                  <img src="{{asset('images/OfertaEspecial.png')}} alt="promo" class="logo-promo">
+                  <img src="{{asset('images/OfertaEspecial.png')}}" alt="promo" class="logo-promo">
                   <div class="imagen-articulo-contenedor">
                     <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
                       <h3>{{$destinoPromo->nombre_destino}}</h3>
