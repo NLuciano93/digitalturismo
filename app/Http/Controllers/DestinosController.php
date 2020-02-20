@@ -12,8 +12,10 @@ class DestinosController extends Controller
 
     public function inicio()
     {
-
-        return view('inicio');
+        $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
+        $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
+        $vac = compact('destinos','destinosPromo');
+        return view('inicio', $vac);
 
     }
     /**

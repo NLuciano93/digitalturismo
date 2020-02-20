@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'DestinosController@inicio');
+Route::view('/faq', 'faq');
 
 ##################   ADMIN   ##############
 Route::view('/adminInicio', 'adminInicio');

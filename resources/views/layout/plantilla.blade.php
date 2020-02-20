@@ -11,6 +11,12 @@
   <title>digitalturismo</title>
 </head>
 <body>
+
+  <div class="container-fluid">
+    <div class="row">
+        @include('layout.nav')
+    </div>
+  </div>
     
 
     @yield('principal')

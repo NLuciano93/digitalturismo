@@ -160,6 +160,10 @@
     box-shadow: 0 0 20px rgb(255, 255, 255);
     transition: all .3s ease-in-out;
 }
+.precio-promo{
+    text-decoration: line-through;
+    display: inline-block;
+}
 .carta-promocion:hover{
     cursor: pointer;
      border: 3px solid greenyellow;
