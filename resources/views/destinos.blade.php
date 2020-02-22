@@ -40,37 +40,45 @@
                             <!-- imagenes carousel -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active imgCarrusel">
-                                    <img class = "imgCarruseltamano" src="{{asset('images/Destinos/barilocheEsquiando.jpg')}}" class="d-block w-100 img-fluid" alt="Bariloche"> 
+                                    <img class = "imgCarruseltamano" src=
+                        "{{ asset('images/Destinos') }}/{{ $destinos[0]->avatar_destino}}"
+                                     class="d-block w-100 img-fluid" alt="Bariloche"> 
                                     <div class="tit-Destino-carru" >
                                         <a href="detalleProducto.php">
-                                            <h3>BARILOCHE SKI</h3>
+                                            <h3>{{$destinos[0]->nombre_destino}}</h3>
                                         </a>
                                     </div>
                                 </div>
                                 
                                 <div class="carousel-item imgCarrusel">
-                                    <img class = "imgCarruseltamano" src="images/Destinos/Cataratas/cataratas-iguazu-panoramica.jpg" class="d-block w-100 img-fluid" alt="...">
+                                    <img class = "imgCarruseltamano" src=
+                    "{{ asset('images/Destinos')}}/{{$destinos[1]->avatar_destino}}"         
+                                class="d-block w-100 img-fluid" alt="...">
                                     <div class="tit-Destino-carru" >
                                         <a href="detalleProducto.php">
-                                            <h3>CATARATAS Extrem</h3>
+                                            <h3>{{$destinos[1]->nombre_destino}}</h3>
                                         </a>
                                     </div>
                                 </div>
                                 
                                 <div class="carousel-item imgCarrusel">
-                                    <img class = "imgCarruseltamano" src="images/Destinos/Mendoza/mendozaUvasMontañas.jpg" class="d-block w-100 img-fluid" alt="...">
+                                    <img class = "imgCarruseltamano" src=
+                        "{{ asset('images/Destinos') }}/{{ $destinos[2]->avatar_destino}}"
+                                    class="d-block w-100 img-fluid" alt="...">
                                     <div class="tit-Destino-carru" >
                                         <a href="detalleProducto.php">
-                                            <h3>MENDOZA CITY TOUR</h3>
+                                            <h3>{{$destinos[2]->nombre_destino}}</h3>
                                         </a>
                                     </div>
                                 </div>
                                 
                                 <div class="carousel-item imgCarrusel" >
-                                    <img class = "imgCarruseltamano" src="images/Destinos/Salta/saltaMontañaColores.jpg" class="d-block w-100 img-fluid" alt="...">
+                                    <img class = "imgCarruseltamano" src=
+                        "{{ asset('images/Destinos') }}/{{ $destinos[3]->avatar_destino}}"
+                                class="d-block w-100 img-fluid" alt="...">
                                     <div class="tit-Destino-carru" >
                                         <a href="detalleProducto.php">
-                                            <h3>SALTA "LA LINDA"</h3>
+                                            <h3>{{$destinos[3]->nombre_destino}}</h3>
                                         </a>
                                     </div>
                                 </div>
@@ -104,7 +112,9 @@
                             <article class="borderBox m-3 destino-individual">
                                 
                                 <div class="photo-container">
-                                    <img class="photo" src="{{asset('images/Destinos/barilocheEsquiando.jpg')}}" alt="Bari Esquiando">
+                                    <img class="photo" src=
+                        "{{ asset('images/Destinos') }}/{{ $destino->avatar_destino}}"
+                                     alt="foto destino">
                                     <button class="favorito"><i class="fas fa-heart"></i></button>
                                     <a href="detalleProducto.php" title="Mas Informacion">
                                         <div class="tit-Destino" >
@@ -122,6 +132,9 @@
     </div>
 </div>
 </div>
-</div> 
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 </body>
 </html>
