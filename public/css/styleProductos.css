@@ -121,6 +121,12 @@ font-family: 'Roboto', sans-serif;
     z-index: 100;
 }
 
+.estrella {
+    width: 15px;
+    height: 15px;
+}
+
+
 .favorito{
     display: flex;
     justify-content: center;
@@ -175,6 +181,32 @@ font-family: 'Roboto', sans-serif;
     margin-bottom: 5px;
     text-align: center;
     font-family: 'Anton', sans-serif;
+}
+
+.coment {
+    position: absolute;
+    text-align: center;
+    right: 0;
+    width: 50%;
+}
+
+.puntuacion {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    width: 50%;
+}
+
+.coment small {
+    font-size: 0.8rem;
+    color: white;
+    font-family: 'Arial';
+}
+
+.puntuacion small {
+    font-size: 0.8rem;
+    color: white;
+    font-family: 'Arial';
 }
 
 .iconos-pie-card {

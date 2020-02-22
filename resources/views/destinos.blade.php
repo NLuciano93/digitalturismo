@@ -122,6 +122,15 @@
                                             <h3 class="texto-card-titulo">${{$destino->precio}}</h3>
                                         </div>
                                     </a>
+                                    <div class="puntuacion">
+                                        <small>4.5</small>
+                                        <img class="estrella" src=
+                                        "{{ asset('images/iconoEstrella.png') }}"
+                                            alt="Estrellas">
+                                    </div>
+                                    <div class="coment">
+                                        <small>comentarios (1)</small>
+                                    </div>
                                 </div>
                                 
                             </article>                                
